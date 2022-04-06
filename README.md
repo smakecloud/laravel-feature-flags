@@ -67,7 +67,7 @@ If the flag is enabled, it will be disabled. If it's disabled, it will be enable
 
 ### Model flags
 
-If you would like to feature flag specific models, begin by implementing the `HasFeatures` interface and using the `Features` trait. Here's an example on a `User` model.
+If you would like to feature flag specific models, begin by implementing the `RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures` interface and using the `RyanChandler\LaravelFeatureFlags\Models\Concerns\WithFeatures` trait. Here's an example on a `User` model.
 
 ```php
 use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
@@ -75,7 +75,7 @@ use RyanChandler\LaravelFeatureFlags\Models\Concerns\Features;
 
 class User extends Authenticatable implements HasFeatures
 {
-    use Features;
+    use WithFeatures;
 }
 ```
 

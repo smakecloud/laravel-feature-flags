@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use RyanChandler\LaravelFeatureFlags\Facades\Features;
+use RyanChandler\LaravelFeatureFlags\Models\Concerns\WithFeatures;
 use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
-use RyanChandler\LaravelFeatureFlags\Models\Concerns\Features as WithFeatures;
 
 class Group extends Model implements HasFeatures
 {

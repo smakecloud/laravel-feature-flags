@@ -8,7 +8,7 @@ use RyanChandler\LaravelFeatureFlags\Models\FeatureFlag;
 /**
  * @mixin \Illuminate\Database\Eloquent\Model & \RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures
  */
-trait Features
+trait WithFeatures
 {
     public function features(): MorphMany
     {

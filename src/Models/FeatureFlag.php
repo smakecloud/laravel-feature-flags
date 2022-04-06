@@ -5,8 +5,15 @@ namespace RyanChandler\LaravelFeatureFlags\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
 
+/**
+ * @property      string    $name
+ * @property      bool      $enabled
+ * @property-read string    $flaggable_type
+ * @property-read int       $flaggable_id
+ */
 class FeatureFlag extends Model
 {
     use HasFactory;
@@ -17,7 +24,7 @@ class FeatureFlag extends Model
         'enabled' => 'bool',
     ];
 
-    public function flaggable()
+    public function flaggable(): MorphTo
     {
         return $this->morphTo();
     }
@@ -29,7 +36,8 @@ class FeatureFlag extends Model
 
     public function scopeFor(Builder $query, ?HasFeatures $for): void
     {
-        $query->when($for,
+        $query->when(
+            $for,
             fn (Builder $query) => $query->whereMorphedTo('flaggable', $for),
             default: fn (Builder $query) => $query->where([
                 'flaggable_type' => null,
