@@ -15,7 +15,7 @@ You can install the package via Composer:
 composer require ryangjchandler/laravel-feature-flags
 ```
 
-You can publish and run the migrations with:
+You should then publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --tag="laravel-feature-flags-migrations"
