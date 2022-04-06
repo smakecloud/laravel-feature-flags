@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
-use RyanChandler\LaravelFeatureFlags\Facades\Features;
-
 use function Pest\Laravel\artisan;
+
+use RyanChandler\LaravelFeatureFlags\Facades\Features;
 
 test('feature:enable command works', function () {
     artisan('feature:enable', ['name' => 'foo']);
