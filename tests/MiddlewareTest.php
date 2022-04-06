@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use function Pest\Laravel\get;
 use RyanChandler\LaravelFeatureFlags\Enums\MiddlewareBehaviour;
 use RyanChandler\LaravelFeatureFlags\Facades\Features;
+
 use RyanChandler\LaravelFeatureFlags\Middleware\HasFeature;
 
-use function Pest\Laravel\get;
-
 beforeEach(function () {
-    Route::get('/features', function () {})->middleware(HasFeature::class . ':foo');
+    Route::get('/features', function () {
+    })->middleware(HasFeature::class . ':foo');
 });
 
 test('the middleware correctly aborts', function () {
