@@ -50,5 +50,12 @@ class LaravelFeatureFlagsServiceProvider extends PackageServiceProvider
 
             $this->info('Global flag `' . $this->argument('name') . '` toggled.');
         })->describe('Toggle a global feature flag.');
+
+        Artisan::command('feature:status {name}', function () {
+            /** @var \Illuminate\Foundation\Console\ClosureCommand $this */
+            $name = $this->argument('name');
+
+            $this->info('Global flag `' . $name . '` is ' . Features::enabled($name) ? 'enabled.' : 'disabled.');
+        });
     }
 }

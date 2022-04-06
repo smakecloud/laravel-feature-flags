@@ -11,6 +11,12 @@ test('feature:enable command works', function () {
     expect(Features::enabled('foo'))->toBeTrue();
 });
 
+test('feature:disable command works', function () {
+    artisan('feature:disable', ['name' => 'foo']);
+
+    expect(Features::disabled('foo'))->toBeTrue();
+});
+
 test('feature:toggle command works', function () {
     artisan('feature:toggle', ['name' => 'foo']);
 
