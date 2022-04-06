@@ -93,6 +93,8 @@ Features::disable('registration', for: $user);
 Features::toggle('registration', for: $user);
 ```
 
+The `WithFeatures` trait also provides a few helper methods on the model: `enableFeature()`, `disableFeature()` and `toggleFeature()`.
+
 ### Blade directive
 
 This package also provides a set of conditional Blade directives for protecting your views with feature flags.
