@@ -121,6 +121,24 @@ return view('my-view', [
 @endfeature
 ```
 
+### Middleware
+
+This package provides a piece of middleware to protect your routes with feature flags.
+
+You need to add the following code to your `app/Http/Kernel.php` file.
+
+```php
+protected $routeMiddleware = [
+    'feature' => \RyanChandler\LaravelFeatureFlags\Middleware\HasFeature::class,
+];
+```
+
+You can then register middleware on your route like so:
+
+```php
+Route::get('/register', fn () => ...)->middleware('feature:registration');
+```
+
 ## Testing
 
 ```bash
