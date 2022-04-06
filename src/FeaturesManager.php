@@ -20,10 +20,8 @@ class FeaturesManager
     public function enable(string $name, HasFeatures $for = null): void
     {
         FeatureFlag::query()->updateOrCreate([
-            ...($for ? [
-                'flaggable_type' => $for::class,
-                'flaggable_id' => $for->getKey(),
-            ] : []),
+            'flaggable_type' => $for ? $for::class : null,
+            'flaggable_id' => $for?->getKey(),
             'name' => $name,
         ], [
             'enabled' => true,
@@ -33,10 +31,8 @@ class FeaturesManager
     public function disable(string $name, HasFeatures $for = null): void
     {
         FeatureFlag::query()->updateOrCreate([
-            ...($for ? [
-                'flaggable_type' => $for::class,
-                'flaggable_id' => $for->getKey(),
-            ] : []),
+            'flaggable_type' => $for ? $for::class : null,
+            'flaggable_id' => $for?->getKey(),
             'name' => $name,
         ], [
             'enabled' => false,
@@ -46,10 +42,8 @@ class FeaturesManager
     public function toggle(string $name, HasFeatures $for = null): void
     {
         $flag = FeatureFlag::query()->firstOrCreate([
-            ...($for ? [
-                'flaggable_type' => $for::class,
-                'flaggable_id' => $for->getKey(),
-            ] : []),
+            'flaggable_type' => $for ? $for::class : null,
+            'flaggable_id' => $for?->getKey(),
             'name' => $name,
         ], [
             'enabled' => false,

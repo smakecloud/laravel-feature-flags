@@ -29,6 +29,12 @@ class FeatureFlag extends Model
 
     public function scopeFor(Builder $query, ?HasFeatures $for): void
     {
-        $query->when($for, fn (Builder $query) => $query->whereMorphedTo('flaggable', $for));
+        $query->when($for,
+            fn (Builder $query) => $query->whereMorphedTo('flaggable', $for),
+            default: fn (Builder $query) => $query->where([
+                'flaggable_type' => null,
+                'flaggable_id' => null,
+            ])
+        );
     }
 }

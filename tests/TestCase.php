@@ -3,11 +3,14 @@
 namespace RyanChandler\LaravelFeatureFlags\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\LaravelFeatureFlags\LaravelFeatureFlagsServiceProvider;
 
 class TestCase extends Orchestra
 {
+    use LazilyRefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
