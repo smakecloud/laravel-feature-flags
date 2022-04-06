@@ -3,11 +3,11 @@
 namespace RyanChandler\LaravelFeatureFlags\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use RyanChandler\LaravelFeatureFlags\Models\FeatureFlag;
 
-/*
-class ModelFactory extends Factory
+class FeatureFlagFactory extends Factory
 {
-    protected $model = YourModel::class;
+    protected $model = FeatureFlag::class;
 
     public function definition()
     {
@@ -16,4 +16,3 @@ class ModelFactory extends Factory
         ];
     }
 }
-*/

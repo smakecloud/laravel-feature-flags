@@ -1,5 +1,9 @@
 <?php
-// config for RyanChandler/LaravelFeatureFlags
+
+use RyanChandler\LaravelFeatureFlags\Models\FeatureFlag;
+
 return [
+
+    'model' => FeatureFlag::class,
 
 ];
