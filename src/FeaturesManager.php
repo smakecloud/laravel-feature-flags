@@ -2,6 +2,7 @@
 
 namespace RyanChandler\LaravelFeatureFlags;
 
+use RyanChandler\LaravelFeatureFlags\Enums\MiddlewareBehaviour;
 use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
 use RyanChandler\LaravelFeatureFlags\Models\FeatureFlag;
 
@@ -51,5 +52,23 @@ class FeaturesManager
 
         $flag->enabled = ! $flag->enabled;
         $flag->save();
+    }
+
+    /** @internal */
+    public function getMiddlewareBehaviour(): MiddlewareBehaviour
+    {
+        return config('feature-flags.middleware.behaviour', MiddlewareBehaviour::Abort);
+    }
+
+    /** @internal */
+    public function getMiddlewareAbortCode(): int
+    {
+        return (int) config('feature-flags.middleware.code', 403);
+    }
+
+    /** @internal */
+    public function getMiddlewareRedirect(): ?string
+    {
+        return config('feature-flags.middleware.redirect');
     }
 }
