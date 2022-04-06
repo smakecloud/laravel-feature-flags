@@ -1,26 +1,7 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use RyanChandler\LaravelFeatureFlags\Tests\Fixtures\Group;
 use RyanChandler\LaravelFeatureFlags\Facades\Features;
-use RyanChandler\LaravelFeatureFlags\Models\Concerns\WithFeatures;
-use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
-
-class Group extends Model implements HasFeatures
-{
-    use WithFeatures;
-
-    public static function booted()
-    {
-        if (! Schema::hasTable('groups')) {
-            Schema::create('groups', function (Blueprint $table) {
-                $table->id();
-                $table->timestamps();
-            });
-        }
-    }
-}
 
 test('a model flag can be enabled', function () {
     $group = Group::create();

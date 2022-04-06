@@ -93,6 +93,32 @@ Features::disable('registration', for: $user);
 Features::toggle('registration', for: $user);
 ```
 
+### Blade directive
+
+This package also provides a set of conditional Blade directives for protecting your views with feature flags.
+
+```blade
+@feature('registration')
+    <a href="/register">Register now!</a>
+@endfeature
+```
+
+You can use `@elsefeature` and `@unlessfeature` directives too.
+
+If you would like to check a feature flag for a model, you can provide a named argument to the directive.
+
+```php
+return view('my-view', [
+    'user' => User::first(),
+]);
+```
+
+```blade
+@feature('registration', for: $user)
+    <a href="/register">Register now!</a>
+@endfeature
+```
+
 ## Testing
 
 ```bash
