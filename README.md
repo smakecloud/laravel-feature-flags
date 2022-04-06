@@ -18,14 +18,14 @@ composer require ryangjchandler/laravel-feature-flags
 You should then publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-feature-flags-migrations"
+php artisan vendor:publish --tag="feature-flags-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-feature-flags-config"
+php artisan vendor:publish --tag="feature-flags-config"
 ```
 
 ## Usage
