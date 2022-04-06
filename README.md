@@ -139,6 +139,16 @@ You can then register middleware on your route like so:
 Route::get('/register', fn () => ...)->middleware('feature:registration');
 ```
 
+The default behaviour of the middleware is to abort with a `403 Forbidden` status code.
+
+This can be configured in the configuration file by changing the value of `middleware.behaviour`. The package uses the `MiddlewareBehaviour` enumeration as the configuration value.
+
+You can change the status code using the `middleware.code` configuration option.
+
+#### Redirecting instead of aborting
+
+If you would prefer to redirect instead of aborting, set `middleware.behaviour` to `MiddlewareBehaviour::Redirect` and `middleware.redirect` to your preferred redirect location.
+
 ## Testing
 
 ```bash
