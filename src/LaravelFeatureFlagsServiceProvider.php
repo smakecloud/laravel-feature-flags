@@ -55,7 +55,7 @@ class LaravelFeatureFlagsServiceProvider extends PackageServiceProvider
             /** @var \Illuminate\Foundation\Console\ClosureCommand $this */
             $name = $this->argument('name');
 
-            $this->info('Global flag `' . $name . '` is ' . Features::enabled($name) ? 'enabled.' : 'disabled.');
+            $this->info('Global flag `' . $name . '` is ' . (Features::enabled($name) ? 'enabled.' : 'disabled.'));
         });
     }
 }
