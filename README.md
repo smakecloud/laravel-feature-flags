@@ -149,6 +149,14 @@ You can change the status code using the `middleware.code` configuration option.
 
 If you would prefer to redirect instead of aborting, set `middleware.behaviour` to `MiddlewareBehaviour::Redirect` and `middleware.redirect` to your preferred redirect location.
 
+#### Multiple features
+
+If you wish, you may protect your routes behind multiple feature flags. You can do this by comma-separating the flags passed when defining the middleware on your route definition:
+
+```php
+Route::get('/feature', fn () => ...)->middleware('feature:verified,two-factor');
+```
+
 ## Testing
 
 ```bash
