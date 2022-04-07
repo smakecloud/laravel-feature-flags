@@ -15,16 +15,18 @@ class HasFeature
     ) {
     }
 
-    public function handle(Request $request, Closure $next, string $name)
+    public function handle(Request $request, Closure $next, string ...$features)
     {
-        if (Features::enabled($name)) {
-            return $next($request);
+        foreach ($features as $feature) {
+            if (! Features::enabled($feature)) {
+                if ($this->features->getMiddlewareBehaviour() === MiddlewareBehaviour::Abort) {
+                    abort($this->features->getMiddlewareAbortCode());
+                }
+
+                return redirect()->to($this->features->getMiddlewareRedirect());
+            }
         }
 
-        if ($this->features->getMiddlewareBehaviour() === MiddlewareBehaviour::Abort) {
-            abort($this->features->getMiddlewareAbortCode());
-        }
-
-        return redirect()->to($this->features->getMiddlewareRedirect());
+        return $next($request);
     }
 }
