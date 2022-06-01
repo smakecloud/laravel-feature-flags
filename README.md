@@ -71,7 +71,7 @@ If you would like to feature flag specific models, begin by implementing the `Ry
 
 ```php
 use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
-use RyanChandler\LaravelFeatureFlags\Models\Concerns\Features;
+use RyanChandler\LaravelFeatureFlags\Models\Concerns\WithFeatures;
 
 class User extends Authenticatable implements HasFeatures
 {
