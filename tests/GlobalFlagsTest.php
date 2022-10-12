@@ -1,5 +1,7 @@
 <?php
 
+use function Pest\Laravel\assertDatabaseHas;
+
 use RyanChandler\LaravelFeatureFlags\Facades\Features;
 
 test('global flags can be enabled', function () {
@@ -28,4 +30,13 @@ test('global flags can be toggled', function () {
     Features::toggle('foo');
 
     expect(Features::enabled('foo'))->toBeFalse();
+});
+
+test('global flags can be added', function () {
+    Features::add('foo');
+
+    assertDatabaseHas('feature_flags', [
+        'name' => 'foo',
+        'enabled' => false,
+    ]);
 });
