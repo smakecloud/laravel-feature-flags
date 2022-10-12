@@ -13,6 +13,7 @@ use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
  * @method static void disable(string $name, HasFeatures $for = null)
  * @method static void toggle(string $name, HasFeatures $for = null)
  * @method static void add(string $name, bool $enabled = false, HasFeatures $for = null)
+ * @method static void all(HasFeatures $for = null): array
  *
  * @see \RyanChandler\LaravelFeatureFlags\FeaturesManager
  */

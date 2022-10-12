@@ -81,6 +81,18 @@ Features::toggle(name: 'registration');
 
 If the flag is enabled, it will be disabled. If it's disabled, it will be enabled.
 
+To get an array of all flags, use the `Features::all()` method. This will return an array where the flag names are used for the keys and a boolean representing the current state of the flag is the value.
+
+```php
+use RyanChandler\LaravelFeatureFlags\Facades\Features;
+
+$flags = Features::all();
+
+foreach ($flags as $name => $enabled) {
+    // ...
+}
+```
+
 ### Model flags
 
 If you would like to feature flag specific models, begin by implementing the `RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures` interface and using the `RyanChandler\LaravelFeatureFlags\Models\Concerns\WithFeatures` trait. Here's an example on a `User` model.
