@@ -68,7 +68,9 @@ class FeaturesManager
     public function all(HasFeatures $for = null): array
     {
         return FeatureFlag::query()
-            ->when($for !== null, fn (Builder $query) =>
+            ->when(
+                $for !== null,
+                fn (Builder $query) =>
                 $query->whereMorphedTo('flaggable', $for)
             )
             ->pluck('enabled', 'name')
