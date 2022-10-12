@@ -55,6 +55,22 @@ if (Features::disabled(name: 'registration')) {
 }
 ```
 
+If you wish to just create a new flag without updating existing ones, i.e. inside of a seeder, you can use `Features::add()`.
+
+```php
+use RyanChandler\LaravelFeatureFlags\Facades\Features;
+
+Features::add('registration');
+```
+
+This will create a new flag that is disabled by default. To enable the flag by default, provide a boolean value to the `enabled` argument.
+
+```php
+use RyanChandler\LaravelFeatureFlags\Facades\Features;
+
+Features::add('registration', enabled: true);
+```
+
 If you simply want to toggle a flag, you can use the `Features::toggle()` method.
 
 ```php
