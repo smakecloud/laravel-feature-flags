@@ -3,6 +3,8 @@
 use RyanChandler\LaravelFeatureFlags\Facades\Features;
 use RyanChandler\LaravelFeatureFlags\Tests\Fixtures\Group;
 
+use function Pest\Laravel\assertDatabaseHas;
+
 test('a model flag can be enabled', function () {
     $group = Group::create();
 
@@ -38,4 +40,17 @@ test('a model flag can be toggled', function () {
 
     expect(Features::enabled('foo', for: $group))->toBeFalse();
     expect(Features::disabled('foo', for: $group))->toBeTrue();
+});
+
+test('a model flag can be added', function () {
+    $group = Group::create();
+
+    Features::add('foo', for: $group);
+
+    assertDatabaseHas('feature_flags', [
+        'flaggable_type' => Group::class,
+        'flaggable_id' => $group->getKey(),
+        'name' => 'foo',
+        'enabled' => false,
+    ]);
 });

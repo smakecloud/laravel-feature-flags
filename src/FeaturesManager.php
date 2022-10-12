@@ -54,6 +54,16 @@ class FeaturesManager
         $flag->save();
     }
 
+    public function add(string $name, bool $enabled = false, HasFeatures $for = null): void
+    {
+        FeatureFlag::create([
+            'flaggable_type' => $for ? $for::class : null,
+            'flaggable_id' => $for?->getKey(),
+            'name' => $name,
+            'enabled' => $enabled,
+        ]);
+    }
+
     /** @internal */
     public function getMiddlewareBehaviour(): MiddlewareBehaviour
     {
