@@ -2,6 +2,7 @@
 
 namespace RyanChandler\LaravelFeatureFlags;
 
+use Illuminate\Database\Eloquent\Builder;
 use RyanChandler\LaravelFeatureFlags\Enums\MiddlewareBehaviour;
 use RyanChandler\LaravelFeatureFlags\Models\Contracts\HasFeatures;
 use RyanChandler\LaravelFeatureFlags\Models\FeatureFlag;
@@ -62,6 +63,16 @@ class FeaturesManager
             'name' => $name,
             'enabled' => $enabled,
         ]);
+    }
+
+    public function all(HasFeatures $for = null): array
+    {
+        return FeatureFlag::query()
+            ->when($for !== null, fn (Builder $query) =>
+                $query->whereMorphedTo('flaggable', $for)
+            )
+            ->pluck('enabled', 'name')
+            ->all();
     }
 
     /** @internal */
