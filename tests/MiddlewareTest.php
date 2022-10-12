@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use function Pest\Laravel\get;
+
 use RyanChandler\LaravelFeatureFlags\Enums\MiddlewareBehaviour;
 use RyanChandler\LaravelFeatureFlags\Facades\Features;
 

@@ -1,9 +1,10 @@
 <?php
 
-use RyanChandler\LaravelFeatureFlags\Facades\Features;
-use RyanChandler\LaravelFeatureFlags\Tests\Fixtures\Group;
-
 use function Pest\Laravel\assertDatabaseHas;
+
+use RyanChandler\LaravelFeatureFlags\Facades\Features;
+
+use RyanChandler\LaravelFeatureFlags\Tests\Fixtures\Group;
 
 test('a model flag can be enabled', function () {
     $group = Group::create();
